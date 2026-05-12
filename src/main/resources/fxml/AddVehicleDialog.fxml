@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.vehicle.identification.vehicleidsystem.controller.AddVehicleDialogController"
+          hgap="10" vgap="10" alignment="CENTER"
+          style="-fx-padding: 20px;">
+
+    <Label text="Add New Vehicle" style="-fx-font-size: 18px; -fx-font-weight: bold;"
+           GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+
+    <Label text="Registration Number:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="regNumberField" promptText="e.g., ABC-123"
+               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Make:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="makeField" promptText="e.g., Toyota"
+               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Model:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <TextField fx:id="modelField" promptText="e.g., Camry"
+               GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <Label text="Year:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextField fx:id="yearField" promptText="e.g., 2020"
+               GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+    <Label text="Owner ID:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <TextField fx:id="ownerIdField" promptText="Enter Customer ID"
+               GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+    <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Button text="Add Vehicle" onAction="#handleAdd"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+        <Button text="Cancel" onAction="#handleCancel"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+    </HBox>
+
+</GridPane>

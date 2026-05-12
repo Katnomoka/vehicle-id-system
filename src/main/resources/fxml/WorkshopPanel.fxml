@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.WorkshopController"
+            fitToWidth="true" fitToHeight="true"
+            prefWidth="1100" prefHeight="600">
+
+    <VBox spacing="15" style="-fx-padding: 15px;">
+
+        <!-- Title -->
+        <Label text="Workshop Module - Service Records"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Add Service Form -->
+        <TitledPane text="Register New Service" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Vehicle ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="vehicleIdField" promptText="Enter Vehicle ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Service Type:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <ComboBox fx:id="serviceTypeCombo" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Oil Change"/>
+                                <String fx:value="Tire Rotation"/>
+                                <String fx:value="Brake Pads"/>
+                                <String fx:value="Engine Repair"/>
+                                <String fx:value="Inspection"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Label text="Cost ($):" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="costField" promptText="Enter cost"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Description:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextArea fx:id="descriptionArea" prefRowCount="2"
+                              GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Button text="Add Service Record" onAction="#handleAddService"
+                            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+                </GridPane>
+            </VBox>
+        </TitledPane>
+
+        <!-- Service History Table -->
+        <TitledPane text="Service History" expanded="true">
+            <TableView fx:id="serviceTable" prefHeight="300">
+                <columns>
+                    <TableColumn text="Service ID" fx:id="colServiceId" prefWidth="100"/>
+                    <TableColumn text="Vehicle ID" fx:id="colVehicleId" prefWidth="100"/>
+                    <TableColumn text="Date" fx:id="colServiceDate" prefWidth="120"/>
+                    <TableColumn text="Type" fx:id="colServiceType" prefWidth="150"/>
+                    <TableColumn text="Description" fx:id="colDescription" prefWidth="300"/>
+                    <TableColumn text="Cost" fx:id="colCost" prefWidth="100"/>
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
+                <Button text="Refresh History" onAction="#handleRefresh"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            </HBox>
+        </TitledPane>
+
+    </VBox>
+</ScrollPane>

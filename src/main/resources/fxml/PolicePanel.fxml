@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.PoliceController"
+            fitToWidth="true" fitToHeight="true"
+            prefWidth="1100" prefHeight="600">
+
+    <VBox spacing="15" style="-fx-padding: 15px;">
+
+        <!-- Title -->
+        <Label text="Police Module - Vehicle Records"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Police Reports Section -->
+        <TitledPane text="Police Reports" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+
+                <!-- Add Report Form -->
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Vehicle ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="reportVehicleIdField" promptText="Enter Vehicle ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Report Type:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <ComboBox fx:id="reportTypeCombo" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Accident"/>
+                                <String fx:value="Theft"/>
+                                <String fx:value="Speeding"/>
+                                <String fx:value="Other"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Label text="Officer Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="officerNameField" promptText="Enter Officer Name"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Description:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextArea fx:id="reportDescriptionArea" prefRowCount="2"
+                              GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Button text="Add Police Report" onAction="#handleAddReport"
+                            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+                </GridPane>
+
+                <!-- Police Reports Table -->
+                <TableView fx:id="reportTable" prefHeight="200">
+                    <columns>
+                        <TableColumn text="Report ID" fx:id="colReportId" prefWidth="80"/>
+                        <TableColumn text="Vehicle ID" fx:id="colVehicleId" prefWidth="100"/>
+                        <TableColumn text="Report Date" fx:id="colReportDate" prefWidth="120"/>
+                        <TableColumn text="Report Type" fx:id="colReportType" prefWidth="120"/>
+                        <TableColumn text="Description" fx:id="colDescription" prefWidth="250"/>
+                        <TableColumn text="Officer Name" fx:id="colOfficer" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </TitledPane>
+
+        <!-- Violations Section -->
+        <TitledPane text="Traffic Violations" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+
+                <!-- Add Violation Form -->
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Vehicle ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="violationVehicleIdField" promptText="Enter Vehicle ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Violation Type:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="violationTypeField" promptText="e.g., Speeding, Red Light"
+                               GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Fine Amount:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="fineAmountField" promptText="Enter fine amount"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Status:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <ComboBox fx:id="violationStatusCombo" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Paid"/>
+                                <String fx:value="Unpaid"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Button text="Add Violation" onAction="#handleAddViolation"
+                            style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+                </GridPane>
+
+                <!-- Violations Table -->
+                <TableView fx:id="violationTable" prefHeight="200">
+                    <columns>
+                        <TableColumn text="Violation ID" fx:id="colViolationId" prefWidth="100"/>
+                        <TableColumn text="Vehicle ID" fx:id="colViolationVehicleId" prefWidth="100"/>
+                        <TableColumn text="Violation Date" fx:id="colViolationDate" prefWidth="120"/>
+                        <TableColumn text="Violation Type" fx:id="colViolationType" prefWidth="150"/>
+                        <TableColumn text="Fine Amount" fx:id="colFineAmount" prefWidth="120"/>
+                        <TableColumn text="Status" fx:id="colStatus" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </TitledPane>
+
+        <!-- Action Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Refresh Data" onAction="#handleRefresh"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+            <Button text="Export Reports" onAction="#handleExportReports"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

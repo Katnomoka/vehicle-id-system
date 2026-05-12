@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.InsuranceController"
+            fitToWidth="true" fitToHeight="true"
+            prefWidth="1100" prefHeight="600">
+
+    <VBox spacing="15" style="-fx-padding: 15px;">
+
+        <!-- Title -->
+        <Label text="Insurance Module - Policy Management"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Add Policy Form -->
+        <TitledPane text="Add New Policy" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Vehicle ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="vehicleIdField" promptText="Enter Vehicle ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Insurance Company:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="companyField" promptText="e.g. SafeDrive Inc"
+                               GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Policy Number:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="policyNumberField" promptText="Unique Policy ID"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Start Date:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <DatePicker fx:id="startDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Label text="End Date:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="endDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Coverage:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <TextArea fx:id="coverageArea" promptText="e.g. Full Coverage, Liability"
+                              prefRowCount="2" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                    <Button text="Add Policy" onAction="#handleAddPolicy"
+                            style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+                </GridPane>
+            </VBox>
+        </TitledPane>
+
+        <!-- Active Policies Table -->
+        <TitledPane text="Active Policies" expanded="true">
+            <TableView fx:id="policyTable" prefHeight="300">
+                <columns>
+                    <TableColumn text="Policy ID" fx:id="colPolicyId" prefWidth="80"/>
+                    <TableColumn text="Vehicle ID" fx:id="colVehicleId" prefWidth="100"/>
+                    <TableColumn text="Company" fx:id="colCompany" prefWidth="150"/>
+                    <TableColumn text="Policy #" fx:id="colPolicyNumber" prefWidth="120"/>
+                    <TableColumn text="Start Date" fx:id="colStartDate" prefWidth="120"/>
+                    <TableColumn text="End Date" fx:id="colEndDate" prefWidth="120"/>
+                    <TableColumn text="Coverage" fx:id="colCoverage" prefWidth="200"/>
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
+                <Button text="Refresh Policies" onAction="#handleRefresh"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            </HBox>
+        </TitledPane>
+
+    </VBox>
+</ScrollPane>

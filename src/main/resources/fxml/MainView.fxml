@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.MainViewController"
+            prefWidth="1200" prefHeight="700">
+
+    <!-- Top: Menu Bar -->
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="View">
+                <MenuItem text="Dashboard" onAction="#showDashboard"/>
+                <MenuItem text="Progress" onAction="#showProgress"/>
+            </Menu>
+            <Menu text="Modules">
+                <MenuItem text="Admin" onAction="#showAdmin"/>
+                <MenuItem text="Workshop" onAction="#showWorkshop"/>
+                <MenuItem text="Customer" onAction="#showCustomer"/>
+                <MenuItem text="Insurance" onAction="#showInsurance"/>
+                <MenuItem text="Police" onAction="#showPolice"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About" onAction="#showAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Center: TabPane for different views -->
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Dashboard" closable="false">
+                <fx:include source="DashboardView.fxml" fx:id="dashboardTab"/>
+            </Tab>
+            <Tab text="Progress" closable="false">
+                <fx:include source="ProgressView.fxml" fx:id="progressTab"/>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <!-- Bottom: Status Bar -->
+    <bottom>
+        <Label text="Vehicle Identification System v1.0"
+               style="-fx-padding: 5px; -fx-background-color: #f0f0f0;"/>
+    </bottom>
+</BorderPane>

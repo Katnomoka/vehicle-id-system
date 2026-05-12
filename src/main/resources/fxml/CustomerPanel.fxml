@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.CustomerController"
+            fitToWidth="true" fitToHeight="true"
+            prefWidth="1100" prefHeight="600">
+
+    <VBox spacing="15" style="-fx-padding: 15px;">
+
+        <!-- Title -->
+        <Label text="Customer Module - Queries and Information"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Submit Query Form -->
+        <TitledPane text="Submit a Query" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Customer ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="customerIdField" promptText="Enter Customer ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Vehicle ID:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="vehicleIdField" promptText="Enter Vehicle ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Your Query:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="queryTextArea" promptText="Type your question here..."
+                              prefRowCount="3" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                              GridPane.columnSpan="3"/>
+
+                    <Button text="Submit Query" onAction="#handleSubmitQuery"
+                            style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+                </GridPane>
+            </VBox>
+        </TitledPane>
+
+        <!-- Query History Table -->
+        <TitledPane text="My Queries History" expanded="true">
+            <TableView fx:id="queryTable" prefHeight="300">
+                <columns>
+                    <TableColumn text="Query ID" fx:id="colQueryId" prefWidth="80"/>
+                    <TableColumn text="Date" fx:id="colQueryDate" prefWidth="150"/>
+                    <TableColumn text="Query" fx:id="colQueryText" prefWidth="350"/>
+                    <TableColumn text="Response" fx:id="colResponse" prefWidth="350"/>
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px;">
+                <Button text="Refresh Queries" onAction="#handleRefresh"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            </HBox>
+        </TitledPane>
+
+    </VBox>
+</ScrollPane>

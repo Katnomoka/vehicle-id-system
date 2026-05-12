@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vehicle.identification.vehicleidsystem.controller.AdminController"
+            fitToWidth="true" fitToHeight="true"
+            prefWidth="1100" prefHeight="600">
+
+    <VBox spacing="15" style="-fx-padding: 15px;">
+
+        <!-- Title -->
+        <Label text="Admin Module - User Access Management"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Grant/Revoke Access Section -->
+        <TitledPane text="Manage User Access" expanded="true">
+            <VBox spacing="10" style="-fx-padding: 10px;">
+                <GridPane hgap="10" vgap="5">
+
+                    <Label text="User ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="userIdField" promptText="Enter User ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Password:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <PasswordField fx:id="passwordField" promptText="Enter admin password"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Access Level:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="accessLevelCombo" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Workshop"/>
+                                <String fx:value="Customer"/>
+                                <String fx:value="Insurance"/>
+                                <String fx:value="Police"/>
+                                <String fx:value="Full Access"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <!-- Action Buttons -->
+                    <Button text="Grant Access" onAction="#handleGrantAccess"
+                            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+
+                    <Button text="Revoke Access" onAction="#handleRevokeAccess"
+                            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Button text="Refresh List" onAction="#handleRefresh"
+                            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"
+                            GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                </GridPane>
+            </VBox>
+        </TitledPane>
+
+        <!-- Active Users Table -->
+        <TitledPane text="Active Users" expanded="true">
+            <TableView fx:id="usersTable" prefHeight="200">
+                <columns>
+                    <TableColumn text="User ID" fx:id="colUserId" prefWidth="100"/>
+                    <TableColumn text="Username" fx:id="colUsername" prefWidth="150"/>
+                    <TableColumn text="Role" fx:id="colRole" prefWidth="120"/>
+                    <TableColumn text="Granted Date" fx:id="colGrantedDate" prefWidth="150"/>
+                    <TableColumn text="Status" fx:id="colStatus" prefWidth="100"/>
+                    <TableColumn text="Last Login" fx:id="colLastLogin" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </TitledPane>
+
+        <!-- Access Logs Section -->
+        <TitledPane text="Access Logs" expanded="false">
+            <VBox spacing="5" style="-fx-padding: 10px;">
+                <TextArea fx:id="accessLogArea" prefHeight="150" editable="false"
+                          style="-fx-font-family: 'Monospaced'; -fx-font-size: 11px;"/>
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Clear Logs" onAction="#handleClearLogs"
+                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+                    <Button text="Export Logs" onAction="#handleExportLogs"
+                            style="-fx-background-color: #8e44ad; -fx-text-fill: white;"/>
+                </HBox>
+            </VBox>
+        </TitledPane>
+
+        <!-- System Statistics -->
+        <TitledPane text="System Statistics" expanded="true">
+            <GridPane hgap="20" vgap="10" style="-fx-padding: 10px;">
+                <VBox spacing="5" alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <Label text="Total Users" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="totalUsersLabel" text="0" style="-fx-font-size: 24px; -fx-text-fill: #3498db;"/>
+                </VBox>
+                <VBox spacing="5" alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <Label text="Active Sessions" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="activeSessionsLabel" text="0" style="-fx-font-size: 24px; -fx-text-fill: #27ae60;"/>
+                </VBox>
+                <VBox spacing="5" alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                    <Label text="Access Requests" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="pendingRequestsLabel" text="0" style="-fx-font-size: 24px; -fx-text-fill: #e67e22;"/>
+                </VBox>
+                <VBox spacing="5" alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                    <Label text="Denied Access" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="deniedAccessLabel" text="0" style="-fx-font-size: 24px; -fx-text-fill: #e74c3c;"/>
+                </VBox>
+            </GridPane>
+        </TitledPane>
+
+    </VBox>
+</ScrollPane>
